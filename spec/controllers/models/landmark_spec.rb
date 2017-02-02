@@ -9,6 +9,11 @@ describe "Landmark" do
     
   end
 
+  after do
+    Figure.destroy_all
+    Title.destroy_all
+    Landmark.destroy_all
+  end
 
   it "has a name and a year_completed" do 
     expect(@airport.name).to eq("LG Airport")

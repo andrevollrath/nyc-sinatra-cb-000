@@ -1,0 +1,36 @@
+<h1>Edit <%= @figure.name %></h1>
+
+<form action="/figures/<%= @figure.id %>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+  
+  <label>Name:</label>
+  <input type="text" name="figure[name]" id="figure_name" value="<%= @figure.name %>">
+  <br></br>
+ 
+  <label>Choose an existing title:</label><br>
+  <%@titles.each do |t|%>
+    <input type="checkbox" id="title_<%=t.id%>" name="figure[title_ids][]" value='<%=t.id%>' <%= 'checked' if @figure.titles.any? {|k| k.id == t.id} %>><%=t.name%></input>
+  <%end%>
+  <br></br>
+ 
+    <label>and/or, create a new title:</label>
+    <br>
+    <label>Title name:</label>
+      <input type="text" id="new_title" name="title[name]"></input>
+    <br></br>
+
+   <label>Choose an existing landmark:</label><br>
+    <%@landmarks.each do |t|%>
+      <input type="checkbox" id="landmark_<%=t.id%>" name="figure[landmark_ids][]" value='<%=t.id%>' <%= 'checked' if @figure.landmarks.any? {|k| k.id == t.id} %>><%=t.name%></input>
+    <%end%>
+    <br></br>
+ 
+    <label>and/or, create a new landmark:</label>
+    <br>
+    <label>Title name:</label>
+      <input type="text" id="new_landmark" name="landmark[name]"></input>
+    <br></br>   
+  
+  <button type="submit" class="btn btn-default btn-lg" value="Edit Figure">Update Figure</button>
+
+</form>
